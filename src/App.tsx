@@ -20,12 +20,12 @@ import {
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('home');
 
   // Handle scroll spy for active navigation
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'skills', 'experience', 'education'];
+      const sections = ['home', 'skills', 'experience', 'education'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -65,7 +65,7 @@ const App = () => {
             
             {/* Desktop Nav */}
             <nav className="hidden md:flex space-x-8">
-              <NavLink href="#hero" label="Home" />
+              <NavLink href="#home" label="Home" />
               <NavLink href="#skills" label="Skills" />
               <NavLink href="#experience" label="Experience" />
               <NavLink href="#education" label="Education" />
@@ -86,7 +86,7 @@ const App = () => {
         {/* Mobile Nav */}
         {isMenuOpen && (
           <div className="md:hidden bg-white absolute top-16 left-0 w-full shadow-lg border-t border-slate-100 px-4 py-2">
-            <NavLink href="#hero" label="Home" mobile />
+            <NavLink href="#home" label="Home" mobile />
             <NavLink href="#skills" label="Skills" mobile />
             <NavLink href="#experience" label="Experience" mobile />
             <NavLink href="#education" label="Education" mobile />
@@ -97,8 +97,8 @@ const App = () => {
       {/* Main Content */}
       <main className="flex-grow pt-16">
         
-        {/* Hero Section */}
-        <section id="hero" className="relative bg-slate-50 py-20 lg:py-32 overflow-hidden">
+        {/* home Section */}
+        <section id="home" className="relative bg-slate-50 py-20 lg:py-32 overflow-hidden">
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-accent/5 blur-3xl"></div>
           <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-400/5 blur-3xl"></div>
           
