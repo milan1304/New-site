@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Phone, 
   Mail, 
   MapPin, 
   Menu, 
   X, 
-  ChevronRight, 
   Download,
+  Shield,
   Linkedin,
-  Github,
-  Shield
+  Globe
 } from 'lucide-react';
 import { 
   PERSONAL_INFO, 
@@ -41,7 +40,7 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const NavLink = ({ href, label, mobile = false }) => (
+  const NavLink = ({ href, label, mobile = false }: { href: string, label: string, mobile?: boolean }) => (
     <a 
       href={href}
       className={`
@@ -118,16 +117,24 @@ const App = () => {
                 {PERSONAL_INFO.summary}
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm font-medium text-slate-600">
-                <a href={`mailto:${PERSONAL_INFO.email}`} className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full hover:border-accent hover:text-accent transition-all shadow-sm hover:shadow-md w-full sm:w-auto justify-center">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-medium text-slate-600">
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-full hover:border-accent hover:text-accent transition-all shadow-sm hover:shadow-md">
                   <Mail size={18} />
                   {PERSONAL_INFO.email}
                 </a>
-                <a href={`tel:${PERSONAL_INFO.phone}`} className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full hover:border-accent hover:text-accent transition-all shadow-sm hover:shadow-md w-full sm:w-auto justify-center">
+                <a href={`tel:${PERSONAL_INFO.phone.replace(/[^0-9+]/g, '')}`} className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-full hover:border-accent hover:text-accent transition-all shadow-sm hover:shadow-md">
                   <Phone size={18} />
                   {PERSONAL_INFO.phone}
                 </a>
-                <div className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full text-slate-500 w-full sm:w-auto justify-center">
+                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-full hover:border-accent hover:text-accent transition-all shadow-sm hover:shadow-md">
+                  <Linkedin size={18} />
+                  LinkedIn
+                </a>
+                <a href={PERSONAL_INFO.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-full hover:border-accent hover:text-accent transition-all shadow-sm hover:shadow-md">
+                  <Globe size={18} />
+                  mparmar.ca
+                </a>
+                <div className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-full text-slate-500">
                   <MapPin size={18} />
                   {PERSONAL_INFO.address}
                 </div>
@@ -258,10 +265,15 @@ const App = () => {
             </div>
             
             <div className="flex gap-4">
-               {/* Placeholders for social links if they were provided */}
-               <div className="p-2 rounded-full bg-slate-800 hover:bg-accent hover:text-white transition-colors cursor-pointer">
+               <a href="mailto:milan@mparmar.ca" title="Email (milan@mparmar.ca)" className="p-2 rounded-full bg-slate-800 hover:bg-accent hover:text-white transition-colors cursor-pointer">
                  <Mail size={20} />
-               </div>
+               </a>
+               <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" className="p-2 rounded-full bg-slate-800 hover:bg-accent hover:text-white transition-colors cursor-pointer">
+                 <Linkedin size={20} />
+               </a>
+               <a href={PERSONAL_INFO.website} target="_blank" rel="noopener noreferrer" title="Personal Website" className="p-2 rounded-full bg-slate-800 hover:bg-accent hover:text-white transition-colors cursor-pointer">
+                 <Globe size={20} />
+               </a>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
